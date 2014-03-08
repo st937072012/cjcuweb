@@ -33,12 +33,3 @@
 
 ## License
 
-## 123rrrrrrrrrrrrrr
-## dddddrrr
-## 123rrrrrrrrrrrrrr
-## dddddrrr
-## 123rrrrrrrrrrrrrr
-## dddddrrr
-
-
-## word
