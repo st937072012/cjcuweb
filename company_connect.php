@@ -1,15 +1,16 @@
 <?session_start();?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php
-include("mysql_connect.inc.php");
 
-$id = mysql_real_escape_string(trim($_POST['id']));
-$pw = mysql_real_escape_string(trim($_POST['pw']));
+include_once("sqlsrv_connect.php");
+include_once("cjcuweb_lib.php");
 
+$id = sqlsrv_escape(trim($_POST['id']));
+$pw = sqlsrv_escape(trim($_POST['pw']));
 
 $sql = "select * from company where id = '$id'";
-$result = mysql_query($sql);
-$row = @mysql_fetch_row($result);
+$result = sqlsrv_query($conn,$sql);
+$row = @sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC);
 
 if($id != null && $pw != null && $row[0] == $id && $row[1] == md5($pw))
 {		
