@@ -26,7 +26,3 @@
  .
 
 ## License
-
-ejfiehfeifofoeoeic
-
- .
