@@ -146,6 +146,7 @@ exit;
 
 		function change_zone_list(){
 			var zone = $('#zone').val();
+			console.log("zone is:" + zone);
 			$("#zone_name option").remove();
 			// 執行AJAX取得細目資料
 			$.ajax({
