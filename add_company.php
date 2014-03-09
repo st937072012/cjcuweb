@@ -112,21 +112,21 @@
 負責人姓名*：<input type="text" name="name" /> <br>
 負責人大頭照檔：<input type="file" name="pic" /> <br>
 Email：<input type="text" name="email" /> <br>
-公司行業類型 : <select name="company_type" id="type"></select><br>
-<!--
-<script> //用JS提領資料庫的"compant_type"表單 待修正
-<?php //include("js_company_type.php"); ?> 
+公司行業類型 : <select name="type" id="company_type"></select><br>
+
+<script> //接受後端php傳來的js陣列
+<?php include("js_company_type.php"); ?> 
     for(var i=0;i<company_type_array.length;i++)
     $("#company_type").append($("<option></option>").attr("value", company_type_array_id[i]).text(company_type_array[i]));
 </script>
--->
+
 公司地點* : <select name="zone" id="zone"></select> <br>
 公司地址*： <input type="text" name="address" /> <br>
-公司資本額：<input type="text" name="budget" /> <br>
+公司資本額：<input type="number" name="budget" min="0" max="999999999"/> <br>
 公司簡介：<br><textarea name="introduction" cols="45" rows="5"></textarea> <br>
 公司證明相關文件掃描檔(營利事業登記證或公司立案證明或其他相關證明文件) <br>
 <input type="file" name="doc" />  <br>
-員工人數：<input type="text" name="stuff_num" /> <br>
+員工人數：<input type="number" name="staff_num" min="1" max="99999"/> <br>
 公司網址：<input type="text" name="url" /> <br>
 
 <input type="submit" name="button" value="確定" />
