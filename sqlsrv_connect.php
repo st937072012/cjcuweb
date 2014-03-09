@@ -1,18 +1,18 @@
 <?
 
-   // connect sqlsrv 
+   // 基本連線資料
    $serverName = 'localhost'; 
    $database = 'cjcuweb';
    $uid = 'zap';
    $pwd = '12345678';
-   $conn;
    
-   try {
-      $conn = new PDO( "sqlsrv:server=$serverName;Database = $database", null, null); 
-      $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION ); 
-   }
-   catch( PDOException $e ) {
-      die( "Error connecting to SQL Server".$e->getMessage() ); 
+   // ReturnDatesAsStrings 設定為true，使DateTime返回字串型態資料
+   // CharacterSet 設定為 utf-8，使回傳中文資料時，不會出現亂碼
+   $connectionInfo = array( "Database"=>$database , "UID"=> $uid , "PWD"=> $pwd ,'ReturnDatesAsStrings'=>true ,"CharacterSet" =>"UTF-8");
+   
+   $conn = sqlsrv_connect( $serverName, $connectionInfo);
+   if( $conn === false) {
+       die( print_r( sqlsrv_errors(), true));
    }
 
 ?>
