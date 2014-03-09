@@ -1,50 +1,18 @@
 <?
-$server = 'cjcuweb.mssql.somee.com';
-$userid = 'scandal0705_SQLLogin_1';
-$password = 'b5ow614v9p';
-// Connect to MSSQL
-//$dbconn = mssql_connect($server, $userid, $password);
-//select a database to work with
- 
-//$con = mssql_connect( $server, $userid, $password);  
- //echo $con;
 
-
-
-
+   // 基本連線資料
    $serverName = 'localhost'; 
-
-   $database = "iJK_BookStore";
-
- 
-
-   // Get UID and PWD from application-specific files. 
-
-   $uid = 'demonzap_SQLLogin_1';
-
-   $pwd = '9od7kcae62';
-
-
-   try {
-
-      $conn = new PDO( "sqlsrv:server=$serverName;Database = $database", null, null); 
-
-      $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION ); 
-
+   $database = 'cjcuweb';
+   $uid = 'zap';
+   $pwd = '12345678';
+   
+   // ReturnDatesAsStrings 設定為true，使DateTime返回字串型態資料
+   // CharacterSet 設定為 utf-8，使回傳中文資料時，不會出現亂碼
+   $connectionInfo = array( "Database"=>$database , "UID"=> $uid , "PWD"=> $pwd ,'ReturnDatesAsStrings'=>true ,"CharacterSet" =>"UTF-8");
+   
+   $conn = sqlsrv_connect( $serverName, $connectionInfo);
+   if( $conn === false) {
+       die( print_r( sqlsrv_errors(), true));
    }
-
- 
-
-   catch( PDOException $e ) {
-
-      die( "Error connecting to SQL Server".$e->getMessage() ); 
-
-   }
-
- 
-
-   echo "Connected to SQL Server";
-
- 
 
 ?>
