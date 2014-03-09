@@ -13,15 +13,16 @@ $fax = mysql_real_escape_string( trim($_POST['fax']));
 $uni_num = mysql_real_escape_string( trim($_POST['uni_num']));
 $name = mysql_real_escape_string( trim($_POST['name']));
 $pic = mysql_real_escape_string( trim($_POST['pic']));
-$sex = mysql_real_escape_string( trim($_POST['sex']));
 $email = mysql_real_escape_string( trim($_POST['email']));
+$type = mysql_real_escape_string( trim($_POST['type']));
+$zone = mysql_real_escape_string( trim($_POST['zone']));
 $adress = mysql_real_escape_string( trim($_POST['address']));
 $budget = mysql_real_escape_string( trim($_POST['budget']));
 $introduction = mysql_real_escape_string( trim($_POST['introduction']));
 $doc = mysql_real_escape_string( trim($_POST['doc']));
 $stuff_num =mysql_real_escape_string( trim( $_POST['stuff_num']));
 $url = mysql_real_escape_string( trim($_POST['url']));
-$zone_name = mysql_real_escape_string( trim($_POST['zone_name']));
+
 
 
 
@@ -33,7 +34,7 @@ if(empty($id) || empty($pw) || empty($ch_name) || empty($uni_num) || empty($name
 else{
 	// MD5加密
 	$pw = md5($pw);
-	$sql = "insert into company(id,password,ch_name,en_name,phone,fax,uni_num,name,pic,sex,email,zone_id,address,budget,introduction,doc,stuff_num,url)value('$id','$pw','$ch_name','$en_name','$phone','$fax','$uni_num','$name','$pic','$sex','$email','$zone_name','$address','$budget','$introduction','$doc','$stuff_num','$url')";
+	$sql = "insert into company(id,password,ch_name,en_name,phone,fax,uni_num,name,pic,email,zone_id,address,budget,introduction,doc,stuff_num,url)value('$id','$pw','$ch_name','$en_name','$phone','$fax','$uni_num','$name','$pic','$email','$zone','$address','$budget','$introduction','$doc','$stuff_num','$url')";
 	$result = mysql_query($sql);
 
 	if($result){
