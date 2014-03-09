@@ -57,7 +57,7 @@ else echo '<a href="login.html">登入</a>';
 	// 詳細可以參閱: http://msdn.microsoft.com/en-us/library/hh487160.aspx
  	$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
 
-	$result = sqlsrv_query($conn, $sql, array() );
+	$result = sqlsrv_query($conn, $sql, $params , $options );
 	if($result){
 		while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_NUMERIC)  ){
 			echo "<tr>";
