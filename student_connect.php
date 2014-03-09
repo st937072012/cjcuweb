@@ -4,7 +4,6 @@
 <?
 //連接資料庫
 //只要此頁面上有用到連接MySQL就要include它
-include_once("mysql_connect.inc.php");
 include_once("cjcuweb_lib.php");
 
 $user = sqlsrv_escape(trim($_POST['id']));
