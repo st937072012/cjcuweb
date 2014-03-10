@@ -15,15 +15,13 @@ $name = trim($_POST['name']);
 $pic = trim($_POST['pic']);
 $email = trim($_POST['email']);
 $type = trim($_POST['type']);
-$zone = trim($_POST['zone']);
+$zone_id = trim($_POST['zone_name']);
 $adress = trim($_POST['address']);
 $budget = trim($_POST['budget']);
 $introduction = trim($_POST['introduction']);
 $doc = trim($_POST['doc']);
 $staff_num =trim( $_POST['staff_num']);
 $url = trim($_POST['url']);
-
-
 
 
 if(empty($id) || empty($pw) || empty($ch_name) || empty($uni_num) || empty($name) || empty($address)){

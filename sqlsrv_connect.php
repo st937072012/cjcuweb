@@ -1,7 +1,7 @@
 <?
 
    // 基本連線資料
-   $serverName = '192.168.43.135'; 
+   $serverName = 'localhost'; 
    $database   = 'cjcuweb';
    $uid = 'sol';
    $pwd = '12345678';
