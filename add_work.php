@@ -62,7 +62,8 @@ exit;
 			 <input type="radio" name="isoutside" value="1">校內工作<br>
 
 工作地點* : <select name="zone" id="zone"></select> 
-			<select name="zone_name" id="zone_name"></select> <br>
+			<select name="zone_name" id="zone_name"></select>
+			<span id="zone_name_hint"></span> <br>
 
 招募人數*：<input type="number" name="recruitment_no" id="recruitment_no" value="1" /> <br>
 
@@ -225,6 +226,11 @@ exit;
 				$('#address_hint').text("請填寫正確地址");
 			}
 			else $('#address_hint').text("");
+			if($('#zone_name').val()=="請選擇"){
+				boo = false;
+				$('#zone_name_hint').text("請選擇工作地點");
+			}
+			else $('#zone_name_hint').text("");
 			return boo;
 		}
 
