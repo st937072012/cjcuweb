@@ -11,8 +11,8 @@ function work_list($company_id){
 	// 抓出某公司的工作列表
 	if(!empty($company_id)){
 	echo '<tr><td>發布時間</td><td>工作性質</td><td>工作名稱</td><td>上班地點</td></tr>';
-	$sql = "select w.id,w.date,p.name workpopname,w.name workname,z.name zonename from work as w, 
-	prop as p ,company as c,zone as z where  w.company_id='?' and w.work_prop_id = p.id and w.zone_id = z.id ORDER BY w.date DESC";
+	$sql = "select w.id workid,w.date postdate,p.name workpopname,w.name workname,z.name zonename 
+	from work w, work_prop p, zone z  where  w.company_id=? and p.id= w.work_prop_id and z.id=w.zone_id  ORDER BY w.date DESC";
 	$params = array($company_id); 
 	}
 	// 抓出全部工作列表
