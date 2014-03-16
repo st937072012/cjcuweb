@@ -3,6 +3,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>廠商註冊</title>
+
+<style type="text/css">
+	.edit{
+		width: 200px;
+		background-color: #ede;
+	}
+	.edit:hover{
+		-moz-box-shadow:4px 4px 3px rgba(20%,20%,20%,0.1);
+		-webkit-box-shadow:4px 4px 3px rgba(20%,20%,20%,0.1);
+		box-shadow:4px 4px 3px rgba(20%,20%,20%,0.1);
+	}
+</style>
+
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
@@ -60,14 +73,67 @@
 
 	$(function(){
 
+			function true_func(boo){boo = true ; return boo;}
+			function false_func(boo){boo = false; return boo;}
+			function ajax_check(id,true_func,false_func){
+			var boo = false;
+			$.ajax({
+			type:"POST",
+			async:false, 
+			url:"check_isexist_company.php",
+			data:"id="+id,
+			success:function(msg){ boo = (msg == "0")? false_func(boo) :true_func(boo); },
+			error: function(){alert("網路連線出現錯誤!");}
+			});
+			return boo;
+			}
+			// jQuery AJAX 沒辦法同步得解法
+			
+
+		$('#id').change(function(event) {
+
+			if($(this).val()==""){
+				$('#id_hint').css('color', '#F00').html('帳號不可為空');
+			}
+			else{
+				if(ajax_check($(this).val(),true_func,false_func)){
+					$('#id_hint').css('color', '#F00').html('帳號已被使用');
+				}
+				else{
+					$('#id_hint').css('color', '#0F0').html('帳號可以使用');
+				}
+			}
+		});
+
+
 		$("#zone").append($("<option></option>").attr("value", 0).text("國內"));
 		$("#zone").append($("<option></option>").attr("value", 1).text("國外"));
 		change_zone_list();
 
-		$('#pw2').change(function() {
-		if($('#pw').val() != $(this).val()) $('#pw_hint').text('密碼不相符');
-		else $('#pw_hint').text('');
+
+
+
+		$('#pw').change(function() {
+		if($('#pw').val()=="") $('#pw_hint1').css('color', '#F00').text('密碼不可為空');
+		else  $('#pw_hint1').text('');
 		});
+
+
+		$('#pw2').change(function() {
+
+		var match = false, empty= false,status='';
+		if($('#pw').val() != $('#pw2').val() ) match = true;
+
+		if($('#pw2').val()=="") empty =true;
+
+		if(match) status+='密碼不符 ';
+		if(empty) status='此欄不可為空';
+
+		$('#pw_hint2').css('color', '#F00').text(status);
+		});
+
+	
+
 
 		$('#zone').change(function() {
 			var zone = $(this).val();
@@ -101,9 +167,9 @@
 <body>
 <h1>廠商註冊</h1><hr>
 <form name="form" method="post" action="add_company_finish.php" onsubmit="return check_data();">
-帳號*：<input type="text" name="id" /><br>
-密碼*：<input type="password" name="pw" id="pw" /> <br>
-再一次輸入密碼*：<input type="password" name="pw2" id="pw2" /> <span id="pw_hint"></span><br>
+帳號*：<input type="text" name="id" id="id"/> <span id="id_hint"></span> <br>
+密碼*：<input type="password" name="pw" id="pw" /> <span id="pw_hint1"></span> <br>
+再一次輸入密碼*：<input type="password" name="pw2" id="pw2" /> <span id="pw_hint2"></span><br>
 公司名稱(中文)*：<input type="text" name="ch_name" /> <br>
 公司名稱(英文)： <input type="text" name="en_name" /> <br>
 公司電話*：<input type="text" name="phone" /> <br>
