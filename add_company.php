@@ -120,7 +120,8 @@ Email：<input type="text" name="email" /> <br>
     $("#company_type").append($("<option></option>").attr("value", company_type_array_id[i]).text(company_type_array[i]));
 </script>
 
-公司地點* : <select name="zone" id="zone"></select> <br>
+公司地點* : <select name="zone" id="zone"></select>  
+			<select name="zone_name" id="zone_name"></select> <br>
 公司地址*： <input type="text" name="address" /> <br>
 公司資本額：<input type="number" name="budget" min="0" max="999999999"/> <br>
 公司簡介：<br><textarea name="introduction" cols="45" rows="5"></textarea> <br>

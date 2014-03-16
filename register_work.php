@@ -40,7 +40,7 @@ $detail = sqlsrv_escape(trim($_POST['detail']));
 
 if( !isset($name) || !isset($work_type)  || !isset($year1) || !isset($month1) || !isset($date1) || !isset($hour1)  
 	|| !isset($minute1) || !isset($work_prop) || !isset($zone_name) || !isset($address) || !isset($isoutside) || !isset($year2) 
-	|| !isset($month2) || !isset($date2) || !isset($hour2)  || !isset($minute2) || !isset($recruitment_no)){
+	|| !isset($month2) || !isset($date2) || !isset($hour2)  || !isset($minute2) || !isset($recruitment_no) || $zone_id==0){
 	echo "HAKER!!!!";
 	echo '<meta http-equiv=REFRESH CONTENT=1;url=add_work.php>';
 	exit;
