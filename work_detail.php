@@ -10,6 +10,27 @@ if(isset($_SESSION['username'])) $user_id = $_SESSION['username'];
 <head>
 	<meta charset="UTF-8">
 	<title>工作資料</title>
+	<style type="text/css">
+	.editbar{
+		width: 200px;
+	}
+	.c{
+		margin-bottom: 5px;
+		margin-top: 5px;
+	}
+	.edit{
+		background-color: #ede;
+		display: inline-block;
+		width: 200px;
+		
+	}
+	.edit:hover{
+		cursor: pointer;
+		-moz-box-shadow:1px 1px 2px rgba(20%,20%,20%,0.8);
+		-webkit-box-shadow:1px 1px 2px rgba(20%,20%,20%,0.8);
+		box-shadow:1px 1px 2px rgba(20%,20%,20%,0.8);
+	}
+</style>
 	<!-- 取得公司資訊 -->
 	<script><? include_once("js_work_detail.php"); echo_work_detail_array($work_id); ?></script>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -60,10 +81,38 @@ if(isset($_SESSION['username'])) $user_id = $_SESSION['username'];
 		var column_name = ["工作名稱","發布時間","所屬公司","工作分類1","工作分類2","工作分類3","應徵開始","應徵結束"
 						,"工作性質","校內外工作","工作地點","詳細地址","連絡電話","薪資待遇","招募人數","詳細說明","通過審核"];
 		for(var key in work_detail_array){
-			html_detail+=column_name[idx]+"&emsp;&emsp;&emsp;"+work_detail_array[key]+"<br>";
+			html_detail+="<div class='c'>"+column_name[idx]+"&emsp;&emsp;&emsp;<span id="+key+" class='edit'>"+work_detail_array[key]+"</span></div>";
 			idx++;
 		}	
 		$('#detail').html(html_detail);
+
+
+		$('.edit').click(function(event) {
+			// click element's index
+			var idx = $('.edit').index(this);
+			var self = $('.edit:eq('+idx+')');
+			var editbar = $('<input>').attr({type: 'text',value: self.text()}).addClass('editbar');
+			self.css('display', 'none');
+			self.before(editbar);
+			editbar.focus();
+
+			editbar.focusout(function(event) {
+					editevent(self,editbar);
+			});
+
+			editbar.keydown(function(event) {
+				 if ( event.which == 13 ) {
+				 	editevent(self,editbar);
+				 }
+			});
+		});
+
+		function editevent(self,editbar){
+			self.text(editbar.val()).css('display', '');
+			editbar.remove();
+			// do ajax php edit sqlsrv
+		}
+
 	});
 </script>
 </body>
