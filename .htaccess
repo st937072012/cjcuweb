@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+# set ../company_detail?companyid=0  --->  ../company/0/  beautiful
+RewriteRule ^company/(.*)/?$ company_detail.php?companyid=$1
+
+# set ../work_detail?workid=0  --->  ../work/0/  
+RewriteRule ^work/([0-9]+)/?$ work_detail.php?workid=$1
+
+# set ../student_detail?userid=0  --->  ../student/0/  
+RewriteRule ^student/(.*)/?$ student_detail.php?userid=$1
+
+
+</IfModule>

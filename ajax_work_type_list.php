@@ -4,10 +4,9 @@ include("sqlsrv_connect.php");
 $id = trim($_POST['id']) ;
 $list = trim($_POST['list'])  ;
 
-$table=($list=='1')?"work_type_two":"work_type_three";
 $options =  array("Scrollable" => SQLSRV_CURSOR_KEYSET);
 $params = array($id);
-$sql = "select id,name from ".$table." where parent_no=?";
+$sql = "select id,name from work_type where parent_no=?";
 $result = sqlsrv_query($conn, $sql, $params , $options );
 if($result){
 	echo '<option>請選擇</option>';

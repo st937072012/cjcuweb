@@ -5,8 +5,6 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
-
-
 <body>
 <h1>長榮大學-媒合系統</h1>
 <hr>
@@ -28,13 +26,13 @@ echo "你好".$who." ".$_SESSION['username']."&nbsp;" ;
 
 	$company_id = $_SESSION['username'];
 	if( $_SESSION['level'] == $level_company) {
-		echo '<form  name="company_detail_form" action="company_detail.php" method="post"><input name="company_id" type="hidden" value="'.$company_id.'"></form>';
-		echo '<a href="#" onclick="document.company_detail_form.submit();">公司資訊</a>&nbsp;';
+		echo '<a href="company/'.$company_id.'">公司資訊</a>&nbsp;';
 		echo '<a href="company_work_list.php">管理工作</a>&nbsp;';
 		echo '<a href="add_work.php">新增工作</a>&nbsp;';
 	}
 
 	else if( $_SESSION['level'] == $level_student){
+		echo '<a href="student/'.$_SESSION['username'].'">個人資料</a>&nbsp;';
 		echo '<a href="student_work.php">我的應徵</a>&nbsp;';
 	}
 

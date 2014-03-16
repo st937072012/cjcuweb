@@ -15,12 +15,12 @@ if(verification($user,$pwd)){
  		//將帳號寫入session，方便驗證使用者身份
         $_SESSION['username'] = $user;
         $_SESSION['level'] = $level_student;
-        echo '登入成功!';
+        echo '登入成功! 跳轉中，請稍後...';
         echo '<meta http-equiv=REFRESH CONTENT=1;url=home.php>';
 
 }
 else{
-		echo '登入失敗!';
+		echo '登入失敗! 跳轉中，請稍後...';
         echo '<meta http-equiv=REFRESH CONTENT=1;url=student_login.php>';
 }
 
