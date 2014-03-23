@@ -24,7 +24,7 @@ function echo_data(){
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 <body>
-<div id="header">
+<div id="header" class="div-align">
 <!--<div id="header">-->
 	<div class="sub"><a href="../../../cjcuweb/home.php"><h1>長榮大學 媒合系統</h1></a></div>
 	<div class="sub2"><? echo_data(); ?></div>

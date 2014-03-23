@@ -14,10 +14,14 @@
 <div id="view-header"></div>
 
 
-<? include_once('work_list_lib.php'); work_list(NULL); ?>
 
 
-<div></div>
+
+<div class="div-align">
+	<? include_once('work_list_lib.php'); work_list(NULL); ?>
+
+	
+</div>
 
 
 

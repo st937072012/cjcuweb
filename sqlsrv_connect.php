@@ -1,15 +1,15 @@
 <?
 
    // 基本連線資料
-   $serverName = '192.168.43.135'; 
+   $serverName = 'localhost'; 
    $database   = 'cjcuweb';
-<<<<<<< HEAD
+
    $uid = null;
    $pwd = null;
-=======
+
    $uid = "sol";
    $pwd = "12345678";
->>>>>>> 87a4e44d5a9feab70c3170fa9e89079a2c32e617
+
    
    // ReturnDatesAsStrings 設定為true，使DateTime返回字串型態資料
    // CharacterSet 設定為 utf-8，使回傳中文資料時，不會出現亂碼
