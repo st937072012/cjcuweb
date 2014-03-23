@@ -1,0 +1,32 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 微軟正黑體;
+}
+#header{
+	overflow: auto;
+	background-color: #111;
+	color: #EEE;
+	padding: 9px;	
+}
+#header .sub{
+	float: left;
+	width: auto;
+}
+#header .sub a{
+	color: #EEE;
+	text-decoration: none;
+}
+
+#header .sub2{
+	margin-top: 10px;
+	float: right;
+	width: auto;
+}
+#header .sub2 a{
+	color: #EEE;
+}
+#header .sub2 span{
+	margin-left: 10px;
+	margin-right: 10px;
+}
