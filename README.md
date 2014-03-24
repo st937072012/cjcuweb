@@ -25,7 +25,7 @@
 
 ## Demo
 
- .
+ .demo url
 
 ## Install
 
