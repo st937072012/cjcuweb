@@ -10,8 +10,8 @@ if(isset($_SESSION['username'])) $user_id = $_SESSION['username'];
 <head>
 	<meta charset="UTF-8">
 	<title>工作資料</title>
-	<link rel="stylesheet" type="text/css" href="../../css/main.css">
-	<link rel="stylesheet" type="text/css" href="../../css/work_detail.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/work_detail.css">
 
 	<!-- 取得公司資訊 -->
 	<script><? include_once("js_work_detail.php"); echo_work_detail_array($work_id); ?></script>
@@ -71,7 +71,7 @@ if(isset($_SESSION['username'])) $user_id = $_SESSION['username'];
 
 <script>
 	$(function(){
-		$('#view-header').load('../../public_view/header.php #header');
+		$('#view-header').load('../public_view/header.php #header');
 		//w.name,w.date,w.company_id,one.name typeone,two.name typetwo,three.name typethree,w.start_date,w.end_date,
 	    //prop.name popname,w.is_outside,z.name zonename,w.address,w.phone,w.pay,[recruitment _no],w.detail,[check]
 		var html_detail = "",idx=0;
