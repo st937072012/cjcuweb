@@ -24,13 +24,14 @@ if(isset($_GET['userid'])) $_SESSION['userid']=$_GET['userid']; else{header("Loc
 	$(function(){
 		var html_detail = "",idx = 0;
 		var column_name = ["學號　　","姓名　　","系所　　","大頭貼照","生日　　","綽號　　","性別　　","連絡電話","詳細地址","Email　　","履歷檔案"];
+		var input_name = ["user_no" , "user_name" , "dep_name" , "pic" , "birthday" , "nickname" , "sex" , "phone" , "address" , "email" , "doc"];
 		for(var key in user_detail_array){
 			//不能修改的欄位
 			if(idx == 0){
             html_detail+=column_name[idx]+"&emsp;&emsp;&emsp;"+user_detail_array[key]+"<br>";
 			}
 			else{
-			html_detail+=column_name[idx]+"&emsp;&emsp;&emsp;<input type='text' name = 'val"+idx+"'value='"+user_detail_array[key]+"'><br>";
+			html_detail+=column_name[idx]+"&emsp;&emsp;&emsp;<input type='text' name ='"+input_name[idx]+"' value='"+user_detail_array[key]+"'><br>";
 			}
 			idx++;
 		}	
