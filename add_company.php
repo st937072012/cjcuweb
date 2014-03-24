@@ -4,6 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>廠商註冊</title>
 
+<style type="text/css">
+	.edit{
+		width: 200px;
+		background-color: #ede;
+	}
+	.edit:hover{
+		-moz-box-shadow:4px 4px 3px rgba(20%,20%,20%,0.1);
+		-webkit-box-shadow:4px 4px 3px rgba(20%,20%,20%,0.1);
+		box-shadow:4px 4px 3px rgba(20%,20%,20%,0.1);
+	}
+</style>
+
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 

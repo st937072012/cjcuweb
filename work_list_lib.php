@@ -1,7 +1,6 @@
 <?
 // 以table 顯示工作清單，給予某公司id 即 印出該公司的工作
 // 給予0 null 就印出所有工作
-// 3/24 不適用，改為js_work_list
 function work_list($company_id){
 	include_once("sqlsrv_connect.php");
 	echo '<table border="1">';
@@ -29,7 +28,7 @@ function work_list($company_id){
 			echo "<tr>";
 			echo "<td>".$row[1]."</td>";
 			echo "<td>".$row[2]."</td>";
-			echo "<td><a href=work/".$row[0].">".$row[3]."</a></td>";
+			echo "<td><a href=work/".$row[0]."/>".$row[3]."</a></td>";
 			echo "<td>".$row[4]."</td>";
 			if(empty($company_id)) echo "<td>".$row[5]."</td>";
 			echo "</tr>";

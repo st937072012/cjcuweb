@@ -1,108 +1,50 @@
 <?php session_start(); ?>
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>長榮大學 - 媒合系統</title>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/home.css">
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script>
-	<? include_once('js_work_list.php'); echo_work_list_array(); ?>
-	$(function(){ 
-		$('#view-header').load('public_view/header.php #header');
-		$('#search-detail').hide();
-		$('#btn_detail_search').on('click', function(event) {
-			event.preventDefault();
-			$('#search-detail').slideToggle('fast');
-		});
-
-		/* modle of work 
-			<div class="work">
-				<h1>wefewfwefwefwefewfwefwefwefwefewf</h1>
-				<p>台南市</p>
-				<p>校外 工讀</p>
-				<p>需求 8人</p>
-				<p class="date">2013/01/10</p>
-			</div>
-		*/
-
-		// put work in work-list-container's index
-		var list_container_index = 0;
-
-		for(var i=0;i<work_list_array.length;i++){
-
-			var a_link = $('<a>').attr({href:'work/'+work_list_array[i].wid}),
-				div_work = $('<div>').addClass('work'),
-				work_name = $('<h1>').text(work_list_array[i].wname),
-				work_zone = $('<p>').text(work_list_array[i].zname),
-				work_prop = $('<p>').text(((work_list_array[i].isout=='0')?'校內 ':'校外 ') + work_list_array[i].propname),
-				work_recr = $('<p>').text('需求 '+ work_list_array[i].rno +' 人'),
-				work_date = $('<p>').addClass('date').text(work_list_array[i].date.split(' ')[0]);
-			
-
-			div_work.append(work_name).append(work_zone).append(work_prop).append(work_recr).append(work_date);
-			a_link.append(div_work);
-
-			if(list_container_index==4)list_container_index=0;
-
-			$('.list:eq('+list_container_index+')').append(a_link);
-			list_container_index++;
-		}
-
-	});
-	</script>
+	<title>Document</title>
 </head>
 <body>
-<div id="view-header"></div>
+<h1>長榮大學-媒合系統</h1>
+<hr>
+
+<?
+include_once("cjcuweb_lib.php");
+
+if(isset ($_SESSION['username'])){
+$who="";
+switch ($_SESSION['level']) {
+	case 3: $who = "同學"; break;
+	case 4: $who = "廠商"; break;
+	case 2: $who = "老師"; break;
+	case 1: $who = "員工";break;
+	default: $who = "駭客";break;
+}
+
+echo "你好".$who." ".$_SESSION['username']."&nbsp;" ;
+
+	$company_id = $_SESSION['username'];
+	if( $_SESSION['level'] == $level_company) {
+		echo '<a href="company/'.$company_id.'">公司資訊</a>&nbsp;';
+		echo '<a href="company_work_list.php">管理工作</a>&nbsp;';
+		echo '<a href="add_work.php">新增工作</a>&nbsp;';
+	}
+
+	else if( $_SESSION['level'] == $level_student){
+		echo '<a href="student/'.$_SESSION['username'].'">個人資料</a>&nbsp;';
+		echo '<a href="student_work.php">我的應徵</a>&nbsp;';
+	}
 
 
+echo '<a href="logout.php">登出</a>&nbsp;';
+}	
 
-<div class="top">
+else echo '<a href="login.html">登入</a>';
 
-	<div class="search-bar container">
-		<div class="set-center">
-			<input type="text">
-			<input type="button" value="搜尋">
-			<a href="#" id="btn_detail_search">進階搜尋</a>
-		</div>
-	</div>
+?>
 
-	<div class="tag-bar container" id="search-detail">
-		<div class="tag">台南市</div>
-		<div class="tag">台南市</div>
-		<div class="tag">台南市</div>
-		<div class="tag">台南市</div>
-		<div class="tag">台南市</div>
-		<div class="tag">台南市</div>
-		<div class="tag">台南市</div>
-		<div class="tag">台南市</div>
-		<div class="tag">台南市</div>
-	</div>
-</div>
-
-<div class="center">
-
-	<div class="title container">
-		<div class="title-left">
-		<h1>Work List</h1>
-		</div>
-
-		<div class="title-right">
-		<!-- <span class="tag">台南市</span> -->
-		</div>
-	</div>
-
-	<div class="work-list-bar container">
-		<div class="list"></div>
-		<div class="list"></div>
-		<div class="list"></div>
-		<div class="list"></div>
-	</div>
-
-
-</div>
-	
+<h1>工作列表</h1>
+<? include_once('work_list_lib.php'); work_list(NULL); ?>
 </body>
 </html>
