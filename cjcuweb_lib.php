@@ -56,7 +56,7 @@
         
         } else  die('Error:'.$errno.$errstr);
 
-        return false;
+        return true; //因為學校那邊關閉測試系統 所以直接改成ture
     }
 
 

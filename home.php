@@ -18,7 +18,7 @@ switch ($_SESSION['level']) {
 	case 3: $who = "同學"; break;
 	case 4: $who = "廠商"; break;
 	case 2: $who = "老師"; break;
-	case 1: $who ="員工";break;
+	case 1: $who = "員工";break;
 	default: $who = "駭客";break;
 }
 
