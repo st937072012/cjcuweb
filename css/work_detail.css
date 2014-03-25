@@ -1,0 +1,49 @@
+hr{
+	height: 1px;
+	width: 100%;
+	border-style: none;
+	background-color: #CCC;
+	margin:0;
+
+}
+.overfix{
+	overflow: auto;
+}
+.work-box{
+	padding: 1.5%;
+	margin: 2%;
+	background-color: #FFF;
+	float: left;
+	width: 63%;
+}
+.work-box h1{
+	color: #111;
+}
+.work-box h2{
+	color: #555;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+.work-company-box{
+	padding: 1.5%;
+	margin-top: 2%;
+	margin-right: 2%;
+	margin-bottom: 2%;
+	background-color: #FFF;
+	float: left;
+	width: 25%;
+}
+
+.work-cell{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#work_edit{
+	margin-top: 8px;
+	margin-right: 5px;
+	width: 40px;
+	float: right;
+	font-size: 15px;
+
+}

@@ -5,7 +5,7 @@
  後端平台使用
  1. Apache 2.2
  2. PHP 5.2
- 3. MySQL(暫時)
+ 3. Ms SQL
  
  
 ## Framework
@@ -25,7 +25,7 @@
 
 ## Demo
 
- .
+ .demo url rrrr
 
 ## Install
 
