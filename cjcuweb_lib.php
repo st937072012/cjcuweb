@@ -56,7 +56,6 @@
         
         } else  die('Error:'.$errno.$errstr);
 
-        return true;
     }
 
 

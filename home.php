@@ -57,8 +57,6 @@
 <body>
 <div id="view-header"></div>
 
-
-
 <div class="top">
 
 	<div class="search-bar container">
