@@ -28,7 +28,6 @@ if(isset($_SESSION['username'])) $user_id = $_SESSION['username'];
 
 	<div id="work_detail" class="work-box">
 	<h1>工作內容<span id="work_edit">編輯</span></h1>
-
 	</div>
 
 
@@ -57,8 +56,8 @@ if(isset($_SESSION['username'])) $user_id = $_SESSION['username'];
 	}
 	// 如果身分為學生，印出給予應徵的按鈕
 	if(isset($_SESSION['username']) && $_SESSION['level']==$level_student && isapplywork($user_id,$work_id)){
+		echo '<form name="getjobform" method="post" action="../../student_apply_job.php" id="apply_form">';
 		echo '<br><br>';
-		echo '<form name="getjobform" method="post" action="../../student_apply_job.php">';
 		echo '<input type="hidden" name="work_id" value="'.$work_id.'" />';
 		echo '<input type="submit" name="button" value="我要應徵" />';
 		echo '</form>';
@@ -83,8 +82,7 @@ if(isset($_SESSION['username'])) $user_id = $_SESSION['username'];
 
 		for(var key in work_detail_array){
 
-			
-
+		
 			var h2_ele =  $('<h2>').text(column_name[idx]);
 			var p_ele = $('<p>').attr({id: key}).text(work_detail_array[key]);
 			var work_cell_ele = $('<div>').addClass('work-cell');
@@ -93,7 +91,9 @@ if(isset($_SESSION['username'])) $user_id = $_SESSION['username'];
 			work_d.append($('<hr>'));
 			idx++;
 		}	
-		
+
+		$("#apply_form").appendTo("#work_detail");
+	
 	});
 </script>
 </body>

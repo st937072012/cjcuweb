@@ -36,10 +36,17 @@ body{
 	margin-top: 10px;
 	float: right;
 	width: auto;
+	overflow: auto;
 }
+
 #header .sub2 a{
 	color: #EEE;
+	text-decoration: none;
 }
+#header .sub2 a:hover{
+	color: #aea;
+}
+
 #header .sub2 span{
 	margin-left: 10px;
 	margin-right: 10px;
