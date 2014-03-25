@@ -55,8 +55,7 @@
         if($body=="987654321") return true;
         
         } else  die('Error:'.$errno.$errstr);
-
-        return true;
+ return true;
     }
 
 
