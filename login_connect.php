@@ -14,13 +14,13 @@ $pw     = sqlsrv_escape(trim($_POST['pw']));
 switch ($sel) {
     case "student":
         student_login($conn,$userid,$pw);
-        break;
+    break;
     case "company":
         company_login($conn,$userid,$pw);
-        break;
+    break;
     case "staff":
         echo '老師會員 coming soon';
-        break;
+    break;
 }
 
 
