@@ -11,7 +11,8 @@ include_once("cjcuweb_lib.php");
 	$stmt = sqlsrv_query($conn, $sql, array($user_id,$user_id));
 	if($stmt) $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC); 
 	else die(print_r( sqlsrv_errors(), true));
-echo "var user_detail_array = ". json_encode($row) . ";\n";
+
+    echo "var user_detail_array = ". json_encode($row) . ";\n";
 }
 
 ?>

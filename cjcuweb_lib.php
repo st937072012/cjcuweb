@@ -51,11 +51,13 @@
         // 釋放資源
         fclose($fp);
 
-        // 暫時以此回應為正確 回傳 true 否則一律傳回 false
-        if($body=="987654321") return true;
-        
-        } else  die('Error:'.$errno.$errstr);
- return true;
+
+        // 帳號必須為stud 先不做密碼驗證
+        if ($user == 'stud'){return true;}
+        else{return false;}
+     
+        }
+
     }
 
 

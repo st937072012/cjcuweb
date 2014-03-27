@@ -23,7 +23,7 @@ function echo_data(){
 		echo '<span><a href="../../../cjcuweb/logout.php">登出</a></span>';
 
 	}	
-	else echo '<span><a href="../../../cjcuweb/login.html">登入</a></span>';
+	else echo '<span><a href="../../../cjcuweb/login.php">登入</a></span>';
 }
 ?>
 
