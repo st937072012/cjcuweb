@@ -1,0 +1,47 @@
+hr{
+	height: 1px;
+	width: 100%;
+	border-style: none;
+	background-color: #CCC;
+}
+.overfix{
+	overflow: auto;
+}
+.left-box{
+	padding: 1.5%;
+	margin: 2%;
+	background-color: #FFF;
+	float: left;
+	width: 21%;
+}
+
+.left-box a{ text-decoration: none; }
+
+.right-box{
+	padding: 1.5%;
+	margin-top: 2%;
+	margin-right: 2%;
+	margin-bottom: 2%;
+	background-color: #FFF;
+	float: left;
+	width: 67%;
+}
+
+.list{
+	padding-left: 7px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	color: #0099CC;
+	border-left: solid #FFF 3px;
+
+}
+.list:hover{
+	background-color: #efe;
+	color: #1177aa;
+}
+
+.list-active{
+	color: #111;
+	font-weight: bold;
+	border-left: solid #955 3px;
+}

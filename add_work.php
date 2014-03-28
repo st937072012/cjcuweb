@@ -32,7 +32,6 @@ exit;
 <style type="text/css">span{color: #f00;}</style>
 </head>
 <body>
-<h1>新增工作</h1><hr>
 
 <form name="work" method="post" action="register_work.php" onsubmit="return check_data();">
 

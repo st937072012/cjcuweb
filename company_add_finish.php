@@ -40,14 +40,17 @@ else{
     if( $stmt === false ) {
 
         echo '註冊失敗...';
-        echo '<meta http-equiv=REFRESH CONTENT=1;url=add_company.php>';
+        echo '<meta http-equiv=REFRESH CONTENT=1;url=company_add.php>';
 
         die( print_r( sqlsrv_errors(), true));
     }
     else{
 
-        echo '註冊成功! 請稍候...';
-		echo '<meta http-equiv=REFRESH CONTENT=1;url=company_login.php>';
+        $_SESSION['username'] = $userid;
+        $_SESSION['level'] = 4;
+
+        echo '註冊成功! 登入中...';
+		echo '<meta http-equiv=REFRESH CONTENT=1;url=home.php>';
 	
 	}
 
