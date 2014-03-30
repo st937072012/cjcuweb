@@ -1,6 +1,6 @@
 <?php session_start(); 
 include_once 'sqlsrv_connect.php';
-include_once 'js_lib_mailer.php';
+include_once 'lib_mailer.php';
 
 $check1=$_SESSION["pass_key1"];
 
