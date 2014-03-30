@@ -19,7 +19,7 @@ color: red;
 </head>
 <body>
 <h1>密碼找回</h1><hr>
-<form name="check" method="post" action="found_chk.php" onsubmit="return check_email();">
+<form name="check" method="post" action="company_forgotpwd_chk.php" onsubmit="return check_email();">
 請輸入當初所註冊的EMAIL：<input type="text" name="foundemail" id="foundemail" /><span id="email_chk"></span><br><br>
 <input type="submit" name="button" value="送出" /></form>
 

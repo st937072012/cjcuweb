@@ -1,6 +1,5 @@
 <?php
 include_once 'sqlsrv_connect.php';
-include("class.phpmailer.php"); //匯入PHPMailer類別
 session_start();
 
 
@@ -21,7 +20,7 @@ if ($check1 ==null || $check2 ==null) {
  echo "<script language=javascript>";
  echo "window.alert('很抱歉，驗證碼有空。')"; 
  echo "</script>";
- echo "<META HTTP-EQUIV='refresh' CONTENT='0;URL=company_login.php'>";
+ echo "<META HTTP-EQUIV='refresh' CONTENT='0;URL=login.php'>";
 }else{
 
 $stmt = sqlsrv_query( $conn, $sql);
@@ -38,11 +37,11 @@ if($info==False){
  echo "<script language=javascript>";
  echo "window.alert('很抱歉，你是駭客!請乖乖登入')"; 
  echo "</script>";
- echo "<META HTTP-EQUIV='refresh' CONTENT='0;URL=company_login.php'>";
+ echo "<META HTTP-EQUIV='refresh' CONTENT='0;URL=login.php'>";
   
 }else{
 
-echo "<META HTTP-EQUIV='refresh' CONTENT='0;URL=password_reset.php'>";
+echo "<META HTTP-EQUIV='refresh' CONTENT='0;URL=company_emailpwd_reset.php'>";
 
 
 $_SESSION['pass_key1']=$check1;

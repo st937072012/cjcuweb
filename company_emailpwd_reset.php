@@ -30,7 +30,7 @@ color: red;
 </head>
 <body>
 <h1>密碼重置</h1><hr>
-<form name="password_reset" method="post" action="password_modify.php" onsubmit="return check_data();">
+<form name="password_reset" method="post" action="company_emailpwd_modify.php" onsubmit="return check_data();">
 密碼*：<input type="password" name="pw" id="pw" /> <span id="pw_hint1"></span> <br>
 再一次輸入密碼*：<input type="password" name="pw2" id="pw2" /> <span id="pw_hint2"></span><br>
 
