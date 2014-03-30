@@ -1,0 +1,34 @@
+/*工作表單系列*/
+
+#work-box{
+
+    margin-left: 22px;
+	line-height: 22px;
+	font-size: 10px;
+	width: 90%;
+}
+
+a.work-title{
+	text-decoration: none;
+	color: #5A8FCB;
+}
+
+h1.work-title{
+	margin-left: 10px;
+	font-size: 36px;
+}
+
+
+hr{
+	width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+a.time{
+	color: #ACA899;
+}
+
+#candidates{
+	float: right;
+}

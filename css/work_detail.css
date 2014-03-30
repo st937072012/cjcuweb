@@ -47,3 +47,32 @@ hr{
 	font-size: 15px;
 
 }
+
+
+
+
+/*=====Page專用=================================*/
+
+br.menu-end{
+	clear:both;
+}
+
+#page-cont{
+	border-style:solid;
+    border-width:2px;
+    border-top-width:0px;
+    padding:10px; 
+
+}
+
+
+.page{
+	float:left;
+	border-style:solid;
+    border-width:2px;
+    border-bottom-width:0px;
+    padding:5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin:0px; 
+}
