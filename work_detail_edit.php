@@ -1,11 +1,20 @@
-<? session_start(); 
+<? session_start();?>
+<meta charset="UTF-8">
+<?
+
 include_once("sqlsrv_connect.php");
 include_once("cjcuweb_lib.php");
 
-if(isset($_GET['workid'])) $work_id=$_GET['workid']; else{echo "error!";}
-if(isset($_SESSION['username'])) $user_id = $_SESSION['username'];
 
 
+if(isset($_GET['workid']) && $_SESSION['level']==$level_company) {
+	$work_id=$_GET['workid']; 
+	$user_id = $_SESSION['username'];
+}
+else{
+	echo "您沒有權限訪問這個畫面!!";
+	exit;
+}
 
 echo '<h1>工作內容<span id="work_edit">編輯</span></h1>';
 

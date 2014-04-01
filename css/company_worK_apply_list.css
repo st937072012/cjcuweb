@@ -19,14 +19,14 @@
 
 .sub-box2{
 	float: right;
-	padding-top: 20px;
+	padding-top: 10px;
 	color: #444;
 	font-size: 14px;
 	text-align: right;
 }
 
 .work-img{
-	margin:10px;
+	margin:5px;
 	height: 40px;
 	width: auto;
 }
@@ -53,16 +53,34 @@
 .hide-work{
 	display: none;
 }
-
-.nonecheck{
-	color: #666;
-	font-size: 16px;
+.sub-box2 input[type='button']{
+	height: 30px;
+	width: 70px;
+	color: #EEE;
+	border: none;
+	margin: 2px;
 }
-.yescheck{
-	color:#339933;
-	font-size: 16px;
+.passing-btn{
+	background-color: #339933;
 }
-.nocheck{
+.passing-btn:hover{
+	background-color: #44AA44;
+	color: #fff;
+}
+.notpassing-btn{
+	background-color: #CC3333;
+}
+.notpassing-btn:hover{
+	background-color: #DD4444;
+	color: #fff;
+}
+.isapply{
+	color: #339933;
+	padding: 5px;
+	font-size: 18px;
+}
+.isnotapply{
 	color: #CC3333;
-	font-size: 16px;
+	padding: 5px;
+	font-size: 18px;
 }

@@ -19,11 +19,11 @@
 
 		  	var loc = location.hash.replace( /^#/, '' );
 		  	switch(loc) {
-			case 'company-info':doajax(0);break;
+			case 'company-info': case '':doajax(0);break;
 			case 'company-addwork':doajax(1);break;
 			case 'company-work':doajax(2);break;
 			case 'company-notice':doajax(3);break;
-			default:doajax(0);
+			default:doajax(4);
 			}
 
 		});
@@ -34,9 +34,7 @@
 
 		function doajax(idx){
 
-				$('.list').removeClass('list-active');
-				$('.list:eq('+idx+')').addClass('list-active');
-				$('#right-box-title').text($('.list:eq('+idx+')').text());
+				
 
 				switch(idx) {
 				// company info
@@ -48,7 +46,7 @@
 				// add work
 				case 1:
 				tpe = 'get';
-				para = {};
+				para = {mode:'add'};
 				url = "add_work.php";
 				break;
 				// manage work
@@ -63,13 +61,27 @@
 				para = {};
 				url = "notice.php";	
 				break;
+
+				// work-detail
+				case 4:
+				tpe = 'post';
+				var wid = location.hash.replace( /^#work/, '' );
+				para = {workid:wid};
+				url = "work_detail_edit2.php";	
+				break;
 			}
+
 			$.ajax({
 			  type: tpe,
 			  url: url,
 			  data: para,
 			  success: function (data) { $('#contailer-box').html(data) ;  }
 			});
+
+			if(idx==4) idx=2;
+			$('.list').removeClass('list-active');
+			$('.list:eq('+idx+')').addClass('list-active');
+			$('#right-box-title').text($('.list:eq('+idx+')').text());
 		}
 
 

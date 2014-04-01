@@ -1,0 +1,49 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 微軟正黑體;
+}
+
+.workedit-tabbox{
+	
+	
+	overflow: auto;
+	font-size: 16px;
+}
+.workedit-tabbox .sub-tab{
+	float: left;
+	padding: 10px;
+	
+
+}
+.workedit-tabbox .sub-tab:hover{
+	color: #222;
+	cursor: pointer;
+}
+
+
+
+.tab-active{
+	border-top:solid #aaa 1px;
+	border-left:solid #aaa 1px;
+	border-right:solid #aaa 1px;
+	border-bottom:solid #FFF 1px;
+}
+
+
+.workedit-content{
+	
+	margin-top: -1px;
+	padding-top: 20px;
+	padding-left: 10px;
+	border-top:solid #aaa 1px;
+	
+
+}
+.tab-img{
+	font-size: 17px;
+}
+
+.workedit-content-hide{
+	display: none;
+}

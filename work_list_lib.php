@@ -2,6 +2,7 @@
 //給予某公司id 即 印出該公司的工作
 // 給予0 null 就印出所有工作
 // 3/24 不適用，改為js_work_list
+// 3/31 完全不適用
 function work_list($company_id){
 	include_once("sqlsrv_connect.php");
 	echo '<table border="1">';
