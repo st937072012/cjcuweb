@@ -56,7 +56,7 @@ function check_data(){
 
 <input type="submit" class="submit" name="button" value="登入" /><br><br>
 <a href="company_add.php">廠商註冊</a>　
-<a href="#">忘記密碼</a> 　
+<a href="company_forgotpwd.php">忘記密碼</a> 　
 <a href="home.php">回首頁</a><br>
 
 </form>
