@@ -1,9 +1,17 @@
-<? session_start(); ?>
+<? session_start();
+
+include('cjcuweb_lib.php');
+if(!isset( $_SESSION['username'])  ) {
+	if(!($_SESSION['level']==$level_teacher || $_SESSION['level']==$level_staff))
+ 	echo "No permission"; exit; 
+ }
+
+ ?>
 <!doctype html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>您的公司</title>
+	<title>帳戶管理</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/company_manage.css">
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -18,11 +26,14 @@
 
 		  	var loc = location.hash.replace( /^#/, '' );
 		  	switch(loc) {
-			case 'company-info': case '':doajax(0);break;
-			case 'company-addwork':doajax(1);break;
-			case 'company-work':doajax(2);break;
-			case 'company-notice':doajax(3);break;
-			default:doajax(4);
+			case 'staff-info':doajax(0);break;
+			case 'staff-audit0':doajax(1.0);break;
+			case 'staff-audit1':doajax(1.1);break;
+
+			case 'staff-maintain':doajax(2);break;
+			case 'staff-notice':doajax(3);break;
+
+			default:doajax(0);
 			}
 
 		});
@@ -30,56 +41,56 @@
 		$(window).hashchange();
 
 
-
 		function doajax(idx){
 
+				var pg = 0;
+
+				if(idx==1.0){
+					pg=0;
+					idx=1;
+				}
+				else if(idx==1.1){
+					pg=1;
+					idx=1;
+				}
+
+				$('.list').removeClass('list-active');
+				$('.list:eq('+idx+')').addClass('list-active');
+				$('#right-box-title').text($('.list:eq('+idx+')').text());
+
 				switch(idx) {
-				// company info
+				// student info
 				case 0:
 				tpe = 'get';
-				para = { companyid: <? echo "\"".$_SESSION['username']."\"" ?> };
-				url = "company_detail_edit.php";
+				para = { userid: <? echo "\"".$_SESSION['username']."\"" ?> };
+				url = "staff_detail_edit.php";
 				break;
-				// add work
+				// audit
 				case 1:
 				tpe = 'get';
-				para = {mode:'add'};
-				url = "add_work.php";
+				para = {page:pg};
+				url = "staff_audit.php";
 				break;
-				// manage work
+	
+				// maintain
 				case 2:
 				tpe = 'get';
 				para = {};
-				url = "company_work_list.php";
+				url = "staff_maintain.php";
 				break;
 				// notice
 				case 3:
 				tpe = 'post';
-				para = {level: <? echo "'".$_SESSION['level']."'"; ?>,username: <? echo "'".$_SESSION['username']."'"; ?>};
+				para = {};
 				url = "notice.php";	
 				break;
-
-				// work-detail
-				case 4:
-				tpe = 'post';
-				var wid = location.hash.replace( /^#work/, '' ).split("-");
-				para = {workid:wid[0],page:wid[1]};
-				url = "work_detail_edit2.php";	
-				break;
 			}
-
 			$.ajax({
 			  type: tpe,
 			  url: url,
 			  data: para,
 			  success: function (data) { $('#contailer-box').html(data) ;  }
 			});
-
-			if(idx==4) idx=2;
-			
-			$('.list').removeClass('list-active');
-			$('.list:eq('+idx+')').addClass('list-active');
-			$('#right-box-title').text($('.list:eq('+idx+')').text());
 		}
 
 
@@ -94,12 +105,12 @@
 
 <div class="div-align overfix">
 
-	<div id="" class="left-box" >
+	<div class="left-box" >
 		<h2><? echo $_SESSION['username'] ?></h2><br><hr>
-		<a href="#company-info"><div class="list">公司資訊</div></a><hr>
-		<a href="#company-addwork"><div class="list">新增工作</div></a><hr>
-		<a href="#company-work"><div class="list">管理工作</div></a><hr>
-		<a href="#company-notice"><div class="list">通知</div></a><hr>
+		<a href="#staff-info"><div class="list">個人資訊</div></a><hr>
+		<a href="#staff-audit0"><div class="list">審核</div></a><hr>
+		<a href="#staff-maintain"><div class="list">維護</div></a><hr>
+		<a href="#staff-notice"><div class="list">通知</div></a><hr>
 	</div>
 
 
@@ -109,12 +120,8 @@
 		<div id="contailer-box"></div>
 	</div>
 
-
 	
 </div>
 
-
-
 </body>
-
 </html>

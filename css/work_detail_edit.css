@@ -1,0 +1,268 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 微軟正黑體;
+}
+
+.workedit-tabbox{
+	
+	
+	overflow: auto;
+	font-size: 16px;
+}
+.workedit-tabbox .sub-tab{
+	float: left;
+	padding: 10px;
+	
+
+}
+.workedit-tabbox .sub-tab:hover{
+	color: #222;
+	cursor: pointer;
+}
+
+
+
+.tab-active{
+	border-top:solid #aaa 1px;
+	border-left:solid #aaa 1px;
+	border-right:solid #aaa 1px;
+	border-bottom:solid #FFF 1px;
+}
+
+
+.workedit-content{
+	
+	margin-top: -1px;
+	padding-top: 20px;
+	padding-left: 10px;
+	border-top:solid #aaa 1px;
+	
+
+}
+.tab-img{
+	font-size: 17px;
+}
+
+.workedit-content-hide{
+	display: none;
+}
+
+
+
+/* 以下為工作人員審核樣式 */
+
+.staff-audit-filterbox{
+	height:27px;
+	margin-bottom: 17px;
+}
+#name-filter{
+	height: 85%;
+	width: 215px;
+}
+
+#type-filter{
+	height: 100%;
+	
+}
+
+.staff-apply-form{
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index:2;
+	background-color: rgba(0,0,0,0.5);
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	box-shadow: 0px 2px 3px #888;
+}
+.staff-apply-form:before{
+	content: '';
+	display: inline-block;
+	height: 100%;
+	width: 0;
+	vertical-align: middle;
+}
+
+.staff-apply-box{
+	padding: 2%;
+	margin-top: -5%;
+	vertical-align: middle;
+	text-align: left;
+	display: inline-block;
+	width: 30%;
+	min-width: 480px;
+	background-color: rgba(255,255,255,1);
+}
+.staff-apply-box-close{
+
+	display: block;
+	position: relative;
+	z-index: 3;
+	left:95%;
+	right: 0;
+	top: -10px;
+	font-size: 30px;
+	color: #AAA;
+}
+.staff-apply-box-close:hover{
+	color: #555;
+	cursor: pointer;
+}
+.staff-apply-box h1{
+	margin-top: -10px;
+}
+.staff-apply-box textarea{
+	width: 99%;
+	height: 45px;
+	margin:0.5%;
+	margin-top: 5px;
+	font-size: 16px;
+}
+
+.staff-apply-gbtn{
+	text-align: right;
+	margin-top: 10px;
+}
+#staff-audit-apply-ok{
+	width: 80px;
+	height: 35px;
+	color: #EEE;
+	background-color: #339933;
+	border: none;
+}
+#staff-audit-apply-ok:hover{
+	background-color: #44AA44;
+	color: #fff;
+}
+
+#staff-audit-apply-no{
+	width: 70px;
+	height: 35px;
+	color: #EEE;
+	background-color: #CC3333;
+	border: none;
+	margin-left: 5px;
+}
+#staff-audit-apply-no:hover{
+	background-color: #DD4444;
+	color: #fff;
+}
+
+
+
+
+.staff-audit-list{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	overflow: auto;
+	border-bottom: solid 1px #CCC;
+}
+
+.staff-audit-list h1{
+	font-size: 25px;
+	color: #444;
+}
+.staff-audit-list a{
+	color: #1177aa;
+	text-decoration: none;
+}
+.staff-audit-list a:hover{
+	color: #0099CC;
+}
+
+
+.staff-audit-list-left{
+	width: 80%;
+	float: left;
+}
+.staff-audit-list-right{
+	padding-top: 13px;
+	width: 20%;
+	float: left;
+	text-align: center;
+}
+
+.staff-audit-overview{
+	display: inline-block;
+	margin-left: 30px;
+	font-size: 13px;
+}
+.staff-audit-btn{
+	display: inline-block;
+	vertical-align: middle;
+	height: 30px;
+	width: 80%;
+	border: 0;
+	background-color: #DDD;
+	color: #333;
+}
+
+.staff-audit-btn:hover{
+	background-color: #EEE;
+	cursor: pointer;
+}
+
+
+
+/* 以下為公司管理 專用 */
+
+.company-audit-history{
+	padding: 1%;
+}
+.company-audit-list{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-bottom: solid 1px #DDD;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.company-audit-list span{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.company-audit-time{
+	color: #888;
+	font-size: 16px;
+	font-weight: bold;
+	width: 110px;
+}
+.company-audit-via{
+	color: #888;
+	font-size: 14px;
+	text-align: center;
+}
+.company-audit-status{
+	margin-bottom: 30px;
+}
+.company-audit-censored{
+	width:70px;
+}
+.company-audit-msg{
+	color: #333;
+	width: 305px;
+	overflow: hidden;
+	word-break:break-all;
+	
+}
+.company-audit-again{
+	display: inline-block;
+	float: right;
+	width: 120px;
+	height: 33px;
+	border: none;
+	background-color: #CCC;
+	font-size: 16px;
+
+}
+.company-audit-again:hover{
+	cursor: pointer;
+	background-color: #EEE;
+
+}

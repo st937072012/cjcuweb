@@ -1,12 +1,17 @@
 <? session_start(); 
-if(isset($_GET['userid'])) $_SESSION['userid']=$_GET['userid']; else{header("Location: home.php"); exit;}
+include('cjcuweb_lib.php');
+if(!isset($_SESSION['username']) || $_SESSION['level'] != $level_student) {
+ 	echo "<br>No permission";
+ 	exit; 
+}
+
 ?>
 
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<script><? include_once("js_student_detail.php"); echo_student_detail_array($_SESSION['userid']); ?></script>
+	<script><? include_once("js_student_detail.php"); echo_student_detail_array($_SESSION['username']); ?></script>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	

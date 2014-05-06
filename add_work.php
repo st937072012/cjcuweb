@@ -14,26 +14,53 @@ if(isset ($_SESSION['username']) && $_SESSION['level'] == $level_company){
 	$row = sqlsrv_fetch_array($result,SQLSRV_FETCH_NUMERIC);
 	$company_address = $row[0];
 	$company_phone = $row[1];
+
+
+
+	// 編輯模式,檢查該工作是否為其公司,否則顯示錯誤
+	if($_GET['mode']=='edit'){
+		
+		if(!isCompanyWork($conn,$_SESSION['username'],$_GET['workid'])){
+			echo '你沒有權限訪問改頁面!!';
+			exit();
+		}
+	}
+
+
 }
 else{
 //重定向瀏覽器 且 後續代碼不會被執行 
-header("Location: home.php"); 
+header("Location: login.php"); 
 exit;
 }
+
+
+// 是否為該公司的工作
+function isCompanyWork($conn,$companyid,$workid){
+
+	$sql = "select company_id from work where id=?";
+	$params = array($workid);
+	$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+	$result = sqlsrv_query($conn,$sql,$params,$options);
+	$row = sqlsrv_fetch_array($result,SQLSRV_FETCH_NUMERIC);
+	if($row[0]==$companyid) return true;
+	else return false;
+}
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>新增工作</title>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <style type="text/css">span{color: #f00;}</style>
 </head>
 <body>
 
-<form name="work" method="post" action="register_work.php" onsubmit="return check_data();">
+
+<form name="work" id="work_edit_form" method="post" action="register_work.php" onsubmit="return check_data();" >
 
 工作名稱*：<input type="text" name="name" id="name"/><span id="name_hint"></span><br>
 
@@ -75,9 +102,17 @@ exit;
 		   <label><input type="checkbox" id="phone_same" >同公司電話</label> <br>
   <? echo '<input type="hidden" name="hidden_phone" id="hidden_phone" value="'.$company_phone.'"/>';?>
 
-薪資待遇：<input type="pay" name="pay"/> &nbsp; (可填 時薪,月薪 或 面議)<br>
+薪資待遇：<input type="pay" name="pay" id='pay'/> &nbsp; (可填 時薪,月薪 或 面議)<br>
 
-工作內容：<br><textarea name="detail" cols="45" rows="5"></textarea> <br>
+工作內容：<br><textarea name="detail" cols="45" rows="5" id='detail'></textarea> <br>
+
+<? 
+	if($_GET['mode']=='edit'){
+		echo "<input type='hidden' name='work-id' value=".$_GET['workid'].">";
+		echo "審核狀態：<span id='work-check'></span><br>";
+
+	}
+?>
 
 <input type="submit" name="button" value="確定" />
 <input type="button"  value="取消" onclick="location.href='home.php'"/>
@@ -86,8 +121,19 @@ exit;
 
 
 <script>
+
+	
+	<? 
 	// php load some help data for js array
-	<?php include("js_add_work.php"); ?> 
+	include_once("js_add_work.php"); 
+
+	// if it's edit mode and load init data to js array
+	if($_GET['mode']=='edit'){
+	include_once('js_work_detail.php');
+	echo_work_detail_edit_array($conn,$_GET['workid']);
+	}
+
+	?> 
 	
 	$(function(){
 
@@ -143,8 +189,7 @@ exit;
 
 		// 工作類型第一層 改變時，用ajax列出 第二層 工作類型細目
 		$('#work_type').change(function() {
-			var id = $(this).val();
-			// 清空工作類別細目
+			var id=$(this).val();
 			$("#work_type_list1 option").remove();
 			// 執行AJAX取得細目資料
 			$.ajax({
@@ -159,7 +204,7 @@ exit;
 
 		// 工作類型第二層 改變時，用ajax列出 第三層 工作類型細目
 		$('#work_type_list1').change(function() {
-			var id = $(this).val();
+			var id=$(this).val();
 			// 清空工作類別細目
 			$("#work_type_list2 option").remove();
 			// 執行AJAX取得細目資料
@@ -173,7 +218,7 @@ exit;
 			});
 		});
 
-
+		
 
 
 		// 工作地點改變時，用AJAX列出地點細目
@@ -206,6 +251,103 @@ exit;
 			error: function(){alert("網路連線出現錯誤!");}
 			});
 		}
+
+
+		// 編輯模式就設定初始值
+		<?  if($_GET['mode']=='edit') echo 'setInit(work_detail_array);' ?>
+
+		function setInit(work_detail_array){
+
+			$('#work_edit_form').attr('action', 'work_update.php');
+
+			$('#name').val(work_detail_array['name']);
+			$('#work_type').val(work_detail_array['type1']);
+			
+			var id=$('#work_type').val();
+			// 清空工作類別細目
+			$("#work_type_list1 option").remove();
+			// 執行AJAX取得細目資料
+			$.ajax({
+			type:"POST",
+			async:true, 
+			url:"ajax_work_type_list.php",
+			data:"id="+id+"&list=1",
+			success:function(msg){ $('#work_type_list1').html(msg);	
+			$('#work_type_list1').val( parseInt(work_detail_array['type2']));
+			},
+			error: function(){alert("網路連線出現錯誤!");}
+			});
+
+			
+			var id= parseInt(work_detail_array['type2']);
+			// 清空工作類別細目
+			$("#work_type_list1 option").remove();
+			// 執行AJAX取得細目資料
+			$.ajax({
+			type:"POST",
+			async:true, 
+			url:"ajax_work_type_list.php",
+			data:"id="+id+"&list=2",
+			success:function(msg){ $('#work_type_list2').html(msg);	
+			$('#work_type_list2').val(work_detail_array['type3']);
+			},
+			error: function(){alert("網路連線出現錯誤!");}
+			});
+			
+
+			var start_date = work_detail_array['start_date'].split(" ");
+			var date = start_date[0].split("-");
+			var time = start_date[1].split(":");
+			var y = parseInt(date[0]);
+			var m = parseInt(date[1]);
+			var d = parseInt(date[2]);
+			var hh = parseInt(time[0]);
+			var mm = parseInt(time[1]);
+			
+			$('#year1').val(y);
+			$('#month1').val(m);
+			$('#date1').val(d);
+			$('#hour1').val(hh);
+			$('#minute1').val(mm);
+
+
+			var start_date = work_detail_array['end_date'].split(" ");
+			var date = start_date[0].split("-");
+			var time = start_date[1].split(":");
+			var y = parseInt(date[0]);
+			var m = parseInt(date[1]);
+			var d = parseInt(date[2]);
+			var hh = parseInt(time[0]);
+			var mm = parseInt(time[1]);
+
+			$('#year2').val(y);
+			$('#month2').val(m);
+			$('#date2').val(d);
+			$('#hour2').val(hh);
+			$('#minute2').val(mm);
+
+
+			$('#work_prop').val(work_detail_array['work_prop_id']);
+			$('input[type="radio"][value="'+work_detail_array['is_outside']+'"]').attr('checked', 'true');
+			$('#zone').val(work_detail_array['zone']);
+			$('#zone_name').val(work_detail_array['zone_id']);
+			$('#recruitment_no').val(parseInt(work_detail_array['rno']));
+			$('#address').val(work_detail_array['address']);
+			$('#phone').val(work_detail_array['phone']);
+			$('#pay').val(work_detail_array['pay']);
+			$('#detail').val(work_detail_array['detail']);
+
+			var check_status = '';
+			
+			switch(work_detail_array['check']) {
+				case 0: check_status ='未審核'; break;
+				case 1: check_status ='通過'; break;
+				case 2: check_status ='不通過'; break;
+			}
+			$('#work-check').append(check_status);
+		}
+
+
 	});
 
 	  function check_data(){
@@ -230,6 +372,7 @@ exit;
 				$('#zone_name_hint').text("請選擇工作地點");
 			}
 			else $('#zone_name_hint').text("");
+			
 			return boo;
 		}
 

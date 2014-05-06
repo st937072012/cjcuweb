@@ -58,7 +58,7 @@
 				break;
 				// notice
 				case 3:
-				tpe = 'get';
+				tpe = 'post';
 				para = {};
 				url = "notice.php";	
 				break;
