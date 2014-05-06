@@ -40,7 +40,7 @@ else{echo "您無權訪問該頁面!"; exit;}
 
 		    	var img = $('<img>').attr('src', 'https://cdn2.iconfinder.com/data/icons/picol-vector/32/book_text-128.png').addClass('work-img'),
 		    		
-		    		tita = $('<a>').attr('href', '#work'+work_list_array[i]['wid']).text(work_list_array[i]['wname']),
+		    		tita = $('<a>').attr('href', '#work'+work_list_array[i]['wid']+"-0").text(work_list_array[i]['wname']),
 		    		tit = $('<h1>').addClass('work-tit').append(tita),
 		    		hint = $('<p>').addClass('work-hint')
 		    		.append(work_list_array[i]['name']+'<br>'+ (work_list_array[i]['isout']=='0'?'校內 ':'校外 ')+ work_list_array[i]['propname'] +'<br>'+ work_list_array[i]['date']),

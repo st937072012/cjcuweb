@@ -26,7 +26,7 @@ function isCompanyWork($conn,$companyid,$workid){
 	$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
 	$result = sqlsrv_query($conn,$sql,$params,$options);
 	$row = sqlsrv_fetch_array($result,SQLSRV_FETCH_NUMERIC);
-	echo "主人是 ".$row[0];
+	//echo "主人是 ".$row[0];
 	if($row[0]==$companyid) return true;
 	else return false;
 }
@@ -40,12 +40,40 @@ $sql = "update line_up
 $params = array($check,$userid,$workid);
 $result = sqlsrv_query($conn, $sql, $params);
 
-if($result){
-	echo "1";
-}
-else{
-	echo "0";
 
+
+
+
+
+if(!$result){
+	echo "0";
 }
+
+
+
+$sql = "UPDATE cjcu_notify
+SET isnews = 1 ,time = GETDATE()
+WHERE user_no=? and user_level = ?";
+$params = array($userid,0);
+$result = sqlsrv_query($conn, $sql, $params);
+
+if($result){
+
+	$sql = "insert into msg(send,send_level,recv,recv_level,mcontent,url)
+	values (?,?,?,?,?,?)	";
+	$params = array($_SESSION['username'],1,$userid,0,'您的工作已被審核','');
+	$result = sqlsrv_query($conn, $sql, $params);
+
+	if($result){
+		echo "1";
+	}
+	else
+		echo "0";
+}
+
+
+
+
+
 
 ?>

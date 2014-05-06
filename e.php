@@ -1,60 +1,56 @@
 <html> 
 <head> 
 <title>MS SQL Connection Test</title> 
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script >
+	var a;
+		$(function(){
+			
+			aja();
+
+			function aja(){
+
+				a = $.ajax({
+					url: 's.php',
+					type: 'post',
+					dataType: 'html',
+					beforeSend:function(){
+						$('#btn').text('new request');
+					}
+				})
+				.done(function(data) {
+					$('#btn').text('done');
+					$('d').append(data);
+					console.log("OK,done,and a new request");
+					aja();
+				})
+				.fail(function() {
+					console.log("error");
+					$('#btn').text('error');
+					a.abort();
+				})
+				.always(function() {
+					console.log("DisConnect and reconnect");
+					$('#btn').text('reconnect');
+				});
+
+			}
+			
+			$('#btn').click(function(event) {
+				a.abort();
+				console.log("ajax obj: ", a);
+			});
+
+
+		});
+
+	</script>
 </head> 
 <body> 
 
-
-<?
-$server = 'cjcuweb.mssql.somee.com';
-$userid = 'scandal0705_SQLLogin_1';
-$password = 'b5ow614v9p';
-// Connect to MSSQL
-//$dbconn = mssql_connect($server, $userid, $password);
-//select a database to work with
- 
-//$con = mssql_connect( $server, $userid, $password);  
- //echo $con;
-
-
-
-
-   $serverName = 'localhost'; 
-
-   $database = "iJK_BookStore";
-
- 
-
-   // Get UID and PWD from application-specific files. 
-
-   $uid = 'demonzap_SQLLogin_1';
-
-   $pwd = '9od7kcae62';
-
-
-   try {
-
-      $conn = new PDO( "sqlsrv:server=$serverName;Database = $database", null, null); 
-
-      $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION ); 
-
-   }
-
- 
-
-   catch( PDOException $e ) {
-
-      die( "Error connecting to SQL Server".$e->getMessage() ); 
-
-   }
-
- 
-
-   echo "Connected to SQL Server";
-
- 
-
-?>
-
+<div id="d"></div>
+<a href="d.php">Go other</a>
+<button id='btn'>Abort Ajax</button>
 </body> 
 </html> 

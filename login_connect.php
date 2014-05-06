@@ -1,4 +1,6 @@
-<?session_start();?>
+<?session_start();
+
+?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -35,6 +37,9 @@ function student_login($conn,$userid,$pw,$level_student){
 
         $_SESSION['username'] = $userid;
         $_SESSION['level'] = $level_student;
+        $_SESSION['level2'] = $level_student;
+
+        
 
         login_echo(1);
     }
@@ -50,11 +55,13 @@ function staff_login($conn,$userid,$pw,$level_teacher,$level_staff){
     if($userid=='wu'){
         $_SESSION['username'] = $userid;
         $_SESSION['level'] = $level_staff;
+         $_SESSION['level2'] = $level_staff;
         login_echo(1);
     }
     else if($userid=='chou'){
         $_SESSION['username'] = $userid;
         $_SESSION['level'] = $level_teacher;
+        $_SESSION['level2'] = $level_teacher;
         login_echo(1);
     }
     else{
@@ -79,6 +86,7 @@ function company_login($conn,$userid,$pw,$level_company){
 
             $_SESSION['username'] = $userid;
             $_SESSION['level'] = $level_company;
+            $_SESSION['level2'] = $level_company;
 
             login_echo(1);
 	    }
@@ -102,5 +110,7 @@ function login_echo($os){
         echo '<meta http-equiv=REFRESH CONTENT=2;url=login.php>';
     }
 }
+
+session_write_close(); 
 
 ?>

@@ -49,6 +49,7 @@ function work_list($company_id){
 
 // 給予某學生id 即 印出該學生應徵的工作
 // 不給 id 的話 就直接結束
+// 3/31 完全不適用
 function student_work_list($user_id){
 	if(!isset($user_id)) exit;
 	include_once("sqlsrv_connect.php");

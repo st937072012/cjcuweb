@@ -2,8 +2,7 @@
 /* 工作列表轉成JS Array */
 function echo_work_list_array(){
 
-include_once("sqlsrv_connect.php");
-include_once("cjcuweb_lib.php");
+include("sqlsrv_connect.php");
 
 $para = array();
 
@@ -31,9 +30,7 @@ else die(print_r( sqlsrv_errors(), true));
 
 function echo_work_manage_list_array($companyid){
 
-	include_once("sqlsrv_connect.php");
-	include_once("cjcuweb_lib.php");
-
+	include("sqlsrv_connect.php");
 	$para = array($companyid);
 
 	$sql = "select w.id wid,w.name wname,z.name zname,w.is_outside isout,p.name propname,[recruitment _no] rno,w.date date,t.name
@@ -74,8 +71,8 @@ function echo_work_manage_list_array($companyid){
 
 function echo_student_apply_list_array($userid){
 
-		include_once("sqlsrv_connect.php");
-		include_once("cjcuweb_lib.php");
+		include("sqlsrv_connect.php");
+		include("cjcuweb_lib.php");
 		$para = array($userid);
 
 		$sql = "select w.id wid,w.name wname,z.name zname,w.is_outside isout,p.name propname,[recruitment _no] rno,w.date date,t.name,l.[check] ch

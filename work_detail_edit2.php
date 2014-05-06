@@ -41,6 +41,9 @@
 			$('div[tabtoggle="workedit2"]').removeClass('workedit-content-hide');
 			$('div[tabtoggle="workedit2"]:not(div[tabtoggle="workedit2"]:eq('+index+'))').addClass('workedit-content-hide');
 		});
+
+		tabgroup[<?  echo (int)$_POST['page']; ?>].click();
+
 	});
 
 

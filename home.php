@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 <!doctype html>
 <html>
 <head>
@@ -8,10 +8,25 @@
 	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script><? include_once('js_work_list.php'); echo_work_list_array(); ?></script>
 	<script>
-	<? include_once('js_work_list.php'); echo_work_list_array(); ?>
 	$(function(){ 
-		$('#view-header').load('public_view/header.php #header');
+		
+		//$('#view-header').load(' #header');
+
+		var request = $.ajax({
+		url: "public_view/header.php",type: "POST",data: {},dataType: "html",
+		 beforeSend: function( xhr ) {
+		$('#view-header').html('<div id="header">loading</div>');
+		}
+		});
+
+		request.done(function( msg ) {
+		$('#view-header').html( $(msg).filter('#header'));
+		});
+
+		
+
 		$('#search-detail').hide();
 		$('#btn_detail_search').on('click', function(event) {
 			event.preventDefault();

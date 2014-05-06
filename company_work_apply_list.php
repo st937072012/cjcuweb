@@ -1,10 +1,34 @@
 <? session_start(); ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?
+
+
 if(isset($_SESSION['username'])) $company_id = $_SESSION['username']; 
 else{echo "您無權訪問該頁面!"; exit;} 
-?>
 
+
+include_once("sqlsrv_connect.php");
+
+
+if(!isCompanyWork($conn,$_SESSION['username'],$_GET['workid'])){
+	echo '你沒有權限訪問改頁面!!';
+	exit();
+}
+
+// 是否為該公司的工作
+function isCompanyWork($conn,$companyid,$workid){
+
+	$sql = "select company_id from work where id=?";
+	$params = array($workid);
+	$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+	$result = sqlsrv_query($conn,$sql,$params,$options);
+	$row = sqlsrv_fetch_array($result,SQLSRV_FETCH_NUMERIC);
+	if($row[0]==$companyid) return true;
+	else return false;
+}
+
+
+?>
 
 <!doctype html>
 <html>
@@ -50,7 +74,10 @@ else{echo "您無權訪問該頁面!"; exit;}
 					  type: 'post',
 					  url: 'company_work_apply_user.php',
 					  data: {check:1,user: event.data.arr['user_id'] ,workid:<? echo $_GET['workid']; ?>},
-					  success: function (data) { 
+					  success: function (data) {
+
+						console.log(data); 
+
 					  	var result = (data=='0')? "更新失敗" : "已錄取";
 					  	var target = t.parent(".sub-box2");
 					  	target.empty();
@@ -66,6 +93,7 @@ else{echo "您無權訪問該頁面!"; exit;}
 					  url: 'company_work_apply_user.php',
 					  data: {check:2, user: event.data.arr['user_id'] ,workid:<? echo $_GET['workid']; ?>} ,
 					  success: function (data) { 
+					  	console.log(data); 
 					  	var result = (data=='0')? "更新失敗" : "不錄取";
 					  	var target = t.parent(".sub-box2");
 					  	target.empty();

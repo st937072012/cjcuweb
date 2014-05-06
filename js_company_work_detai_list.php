@@ -2,8 +2,8 @@
 /* 應徵者列表轉成JS Array */
 function echo_company_work_apply_list_array($workid){
 
-include_once("sqlsrv_connect.php");
-include_once("cjcuweb_lib.php");
+include("sqlsrv_connect.php");
+include("cjcuweb_lib.php");
 
 $para = array($workid);
 $sql = "select l.user_id,s.doc,[check] from line_up l,cjcu_student s where l.work_id=? and l.user_id= s.user_no";
