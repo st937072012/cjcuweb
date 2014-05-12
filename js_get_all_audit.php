@@ -24,22 +24,70 @@ if($stmt) {
 			where c.censored=? and c.type=t.id and c.zone_id=z.id";
 	$stmt2 = sqlsrv_query($conn, $sql2, array($ch));
 	$company_list_array = array();
+
 	if($stmt2){
 		while( $row2 = sqlsrv_fetch_array( $stmt2, SQLSRV_FETCH_ASSOC) ) 
 		$company_list_array[] = $row2;
-		echo "var company_list_array".$ch." = ". json_encode($company_list_array) . ";";	
+		echo "var company_list_array".$ch." = ". json_encode($company_list_array) . ";";
+
+
+
+
+
+
+
+
+
+	
 	}else die(print_r( sqlsrv_errors(), true));
+
+
+
+
+
+
 
 
 }
 else die(print_r( sqlsrv_errors(), true));
 
 
+
+
 }
 
 
+function get_all_staff($role){
+include("sqlsrv_connect.php");
 
 
+
+$sql3 ="select user_name,role
+			from cjcu_user
+			where role=?";
+	$stmt3 = sqlsrv_query($conn, $sql3, array($role));
+	$staff_list_array = array();
+
+	if($stmt3){
+		while( $row3 = sqlsrv_fetch_array( $stmt3, SQLSRV_FETCH_ASSOC) ) 
+		$staff_list_array[] = $row3;
+		echo "var staff_list_array".$role." = ". json_encode($staff_list_array) . ";";
+
+
+
+
+
+
+
+
+
+	
+	}else die(print_r( sqlsrv_errors(), true));
+
+
+
+
+}
 
 
 

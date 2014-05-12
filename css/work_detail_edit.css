@@ -134,11 +134,18 @@
 	background-color: #339933;
 	border: none;
 }
+
 #staff-audit-apply-ok:hover{
 	background-color: #44AA44;
 	color: #fff;
 }
-
+#staff-maintain-apply-ok{
+	width: 80px;
+	height: 35px;
+	color: #EEE;
+	background-color: #339933;
+	border: none;
+}
 #staff-audit-apply-no{
 	width: 70px;
 	height: 35px;
@@ -151,7 +158,14 @@
 	background-color: #DD4444;
 	color: #fff;
 }
-
+#staff-maintain-apply-no{
+	width: 70px;
+	height: 35px;
+	color: #EEE;
+	background-color: #CC3333;
+	border: none;
+	margin-left: 5px;
+}
 
 
 
