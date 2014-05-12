@@ -9,9 +9,9 @@
 include_once("sqlsrv_connect.php");
 include_once("cjcuweb_lib.php");
 
-$sel    = sqlsrv_escape(trim($_POST['sel']));
-$userid = sqlsrv_escape(trim($_POST['id']));
-$pw     = sqlsrv_escape(trim($_POST['pw']));
+$sel    = (trim($_POST['sel']));
+$userid = (trim($_POST['id']));
+$pw     = (trim($_POST['pw']));
 
 switch ($sel) {
     case "student":

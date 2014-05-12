@@ -6,6 +6,7 @@
 	<title>您的公司</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/company_manage.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src="js/jquery.hashchange.min.js"></script>
@@ -32,6 +33,7 @@
 
 
 		function doajax(idx){
+
 
 				switch(idx) {
 				// company info
@@ -65,6 +67,7 @@
 				var wid = location.hash.replace( /^#work/, '' ).split("-");
 				para = {workid:wid[0],page:wid[1]};
 				url = "work_detail_edit2.php";	
+				var goback = $('<a>').attr({href:'#company-work',id:'gobackbtn'}).append($('<i>').addClass('fa fa-reply').append(' '));
 				break;
 			}
 
@@ -79,8 +82,13 @@
 			
 			$('.list').removeClass('list-active');
 			$('.list:eq('+idx+')').addClass('list-active');
-			$('#right-box-title').text($('.list:eq('+idx+')').text());
-		}
+
+			$('#right-box-title').html('').append($('.list:eq('+idx+')').text());
+			if(goback) $('#right-box-title').prepend(goback);
+			}
+
+
+		
 
 
 	});
@@ -108,8 +116,8 @@
 		<br>
 		<div id="contailer-box"></div>
 	</div>
-
-
+	
+	
 	
 </div>
 

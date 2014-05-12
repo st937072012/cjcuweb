@@ -84,6 +84,7 @@ if(isset($_GET['companyid'])) $_SESSION['userid']=$_GET['companyid']; else{heade
 		</div>
 <!-- <i class="fa fa-times"></i> -->
 <!-- <i class="fa fa-check"></i> -->
+{"staff_no":"wu","censored":1,"msg":"erveververve","time":"2014-05-12 09:35:59.260"},
 		*/
 		
 		var audit_history_container = $('#company-audit-history');
@@ -160,11 +161,11 @@ if(isset($_GET['companyid'])) $_SESSION['userid']=$_GET['companyid']; else{heade
     //從後端得到公司類型
     <?php include("js_company_type.php"); ?> 
     for(var i=0;i<company_type_array.length;i++)
-    $("#company_type").append($("<option></option>").attr("value", company_type_array_id[i]).text(company_type_array[i]));
+    $("#company_type").append($("<option>").attr("value", company_type_array_id[i]).text(company_type_array[i]));
 
     //從後端得到公司地點
     for(var i=0;i<company_zone_array.length;i++)
-    $("#company_zone").append($("<option></option>").attr("value", company_zone_array_id[i]).text(company_zone_array[i]));
+    $("#company_zone").append($("<option>").attr("value", company_zone_array_id[i]).text(company_zone_array[i]));
 	
 
 </script>

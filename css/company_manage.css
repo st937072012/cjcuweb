@@ -61,7 +61,20 @@ form[id='detail'] input[type='text']{
 	width: 160px;
 
 }
-
+#gobackbtn{
+	font-size: 16px;
+	border: solid 1px #AAA;
+	padding: 2.5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 5px;
+	display: inline-block;
+	vertical-align: top;
+	color: #666;
+}
+#gobackbtn:hover{
+	background-color: #EEE;
+}
 
 
 /* 以下為公司profile 的CSS部分 , 已用特殊名字定義區分 */

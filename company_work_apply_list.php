@@ -1,23 +1,23 @@
-<? session_start(); ?>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<?
+<? session_start(); 
+
+include("cjcuweb_lib.php");
+include("sqlsrv_connect.php");
 
 
 if(isset($_SESSION['username'])) $company_id = $_SESSION['username']; 
-else{echo "您無權訪問該頁面!"; exit;} 
+else{
+	echo "No permission!"; 
+	exit;
+} 
 
-
-include_once("sqlsrv_connect.php");
-
-
-if(!isCompanyWork($conn,$_SESSION['username'],$_GET['workid'])){
-	echo '你沒有權限訪問改頁面!!';
-	exit();
+if( !isCompanyWork($conn,$_SESSION['username'],$_GET['workid']) || 
+	$_SESSION['level']!=$level_company){
+	echo 'No permission!';
+	exit;
 }
 
 // 是否為該公司的工作
 function isCompanyWork($conn,$companyid,$workid){
-
 	$sql = "select company_id from work where id=?";
 	$params = array($workid);
 	$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );

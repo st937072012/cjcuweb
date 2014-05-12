@@ -27,8 +27,9 @@
 
 .work-img{
 	margin:10px;
-	height: 40px;
-	width: auto;
+	font-size: 30px;
+	color: #444;
+	
 }
 .work-tit a{
 	text-decoration: none;
