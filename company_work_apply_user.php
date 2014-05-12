@@ -15,9 +15,9 @@ include("sqlsrv_connect.php");
 
 // 驗證是否為該公司的工作
 
-$workid = sqlsrv_escape(trim($_POST['workid']));
-$userid = sqlsrv_escape(trim($_POST['user']));
-$check = sqlsrv_escape(trim($_POST['check']));
+$workid = (trim($_POST['workid']));
+$userid = (trim($_POST['user']));
+$check = (trim($_POST['check']));
 
 if(!isCompanyWork($conn,$_SESSION['username'],$workid)){echo '0'; exit();}
 function isCompanyWork($conn,$companyid,$workid){

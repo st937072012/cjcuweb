@@ -1,16 +1,29 @@
 <? session_start(); 
-// 身分驗證
+include_once('cjcuweb_lib.php');
+include_once('sqlsrv_connect.php');
+// 檢查該工作是否屬於該公司
+if(!isCompanyWork($conn,$_SESSION['username'],$_POST['workid']) || $_SESSION['level']!=$level_company){
+echo 'No permission!';
+exit();
+}
 
+function isCompanyWork($conn,$companyid,$workid){
+
+	$sql = "select company_id from work where id=?";
+	$params = array($workid);
+	$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+	$result = sqlsrv_query($conn,$sql,$params,$options);
+	$row = sqlsrv_fetch_array($result,SQLSRV_FETCH_NUMERIC);
+	if($row[0]==$companyid) return true;
+	else return false;
+}
 ?>
 
 <!doctype html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/work_detail_edit.css?v=3">
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 	<script>
 
@@ -53,9 +66,9 @@
 <body>
 	
 <div class="workedit-tabbox">
-	<div class="sub-tab tab-active" tabtoggle='workedit1'><i class="icon-pencil tab-img"></i>編輯</div>
-	<div class="sub-tab" tabtoggle='workedit1'><i class="icon-check tab-img"></i>審核</div>
-	<div class="sub-tab" tabtoggle='workedit1'><i class="icon-cog tab-img"></i>設定</div>
+	<div class="sub-tab tab-active" tabtoggle='workedit1'><i class="fa fa-pencil tab-img"></i>編輯</div>
+	<div class="sub-tab" tabtoggle='workedit1'><i class="fa fa-check tab-img"></i>審核</div>
+	<div class="sub-tab" tabtoggle='workedit1'><i class="fa fa-cog tab-img"></i>設定</div>
 </div>
 
 

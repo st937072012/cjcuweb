@@ -1,4 +1,5 @@
 <?
+
 /* 工作列表轉成JS Array */
 function echo_work_list_array(){
 
@@ -16,7 +17,11 @@ $work_list_array = array();
 
 if($stmt) {
 
-	while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) $work_list_array[] = $row;
+	while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) 
+	{
+		$work_list_array[] = $row;
+		//echo $row; 
+	}
 	
 	echo "var work_list_array = ". json_encode($work_list_array) . ";";	
 

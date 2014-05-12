@@ -6,13 +6,7 @@
 	$level_teacher = 2;
 	$level_staff = 1;
 
-	// 過濾特殊符號防止注入，傳入字串後回傳過濾後的字串
-	function sqlsrv_escape($str){
-	    if(get_magic_quotes_gpc()) $str= stripslashes($str);
-	    return str_replace("'", "''", $str);
-	}
-
-	// 連結學校系統驗證身分是否正確
+	/* 連結學校系統驗證身分是否正確
     function verification($user,$pwd){
 
         $uri = 'https://eportal.cjcu.edu.tw/ILMSAccountService/StudentAccout/'.$user.'?pwd='.$pwd;
@@ -59,5 +53,5 @@
 
     }
 
-
+*/
 ?>

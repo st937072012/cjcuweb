@@ -1,19 +1,15 @@
-<? session_start(); ?>
+<? session_start(); 
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<?
 if(isset($_SESSION['username'])) $company_id = $_SESSION['username']; 
-else{echo "您無權訪問該頁面!"; exit;} 
+else{echo "No permission!"; exit;
+} 
 ?>
 
 <!doctype html>
 <html>
 <head>
 	<meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/work.css">
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/work.css?v=1">
     <script><? include_once('js_work_list.php'); echo_work_manage_list_array($company_id);  ?>
 
     /* front-end 架構
@@ -34,17 +30,18 @@ else{echo "您無權訪問該頁面!"; exit;}
 
  		 var body = $('#company-work-list-container');
 
+
 		 for(var i=0;i<work_list_array.length;i++){
 		   
 		    	//work_list_array[i][apply_count]
 
-		    	var img = $('<img>').attr('src', 'https://cdn2.iconfinder.com/data/icons/picol-vector/32/book_text-128.png').addClass('work-img'),
+		    	var img = $('<i>').addClass('fa fa-book').addClass('work-img'),
 		    		
 		    		tita = $('<a>').attr('href', '#work'+work_list_array[i]['wid']+"-0").text(work_list_array[i]['wname']),
 		    		tit = $('<h1>').addClass('work-tit').append(tita),
 		    		hint = $('<p>').addClass('work-hint')
 		    		.append(work_list_array[i]['name']+'<br>'+ (work_list_array[i]['isout']=='0'?'校內 ':'校外 ')+ work_list_array[i]['propname'] +'<br>'+ work_list_array[i]['date']),
-		    		hint2 = $('<p>').append('應徵人數：'+work_list_array[i]['apply_count']+'<br>'+'目前通過：'+ work_list_array[i]['check_count']+'/'+ work_list_array[i]['rno'] ),
+		    		hint2 = $('<p>').append('應徵人數：'+work_list_array[i]['apply_count']+'<br>'+'通過/上限：'+ work_list_array[i]['check_count']+'/'+ work_list_array[i]['rno'] ),
 		    		
 		    		subbox1 = $('<div>').addClass('sub-box').append(img),
 		    		subbox2 = $('<div>').addClass('sub-box').append(tit).append(hint),
